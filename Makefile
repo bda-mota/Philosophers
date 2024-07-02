@@ -1,5 +1,5 @@
 NAME		:= philo
-CFLAGS		:= -Wextra -Wall -Werror -g3
+CFLAGS		:= -Wextra -Wall -Werror -pthread -g3
 MAKEFLAGS += --silent
 
 # PATHS
@@ -8,7 +8,7 @@ SRC_PATH 	:= sources
 OBJ_PATH	:= objects
 
 # SOURCES
-CFILES		:= main.c
+CFILES		:= main.c utils.c parsing.c
 
 #PATH_FILES
 SRCS		:= $(addprefix $(SRC_PATH)/, $(CFILES))
@@ -50,7 +50,7 @@ $(OBJ_PATH):
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(HEADERS) -o $(NAME)
 	@echo "$(GREEN)-------------------------------------------"
-	@echo "$(WHITE)  ✅ The [$(GREEN)PHILOSOPHERS$(WHITE)] has been compiled! ✅ "
+	@echo "$(WHITE) ✅ The [$(GREEN)PHILOSOPHERS$(WHITE)] has been compiled! ✅ "
 	@echo "$(GREEN)-------------------------------------------"
 
 clean:
@@ -60,10 +60,10 @@ clean:
 	@echo "                                     "
 
 fclean: clean
-	@echo "$(WHITE)              Cleaning all... 🧹"
+	@echo "$(WHITE)                 Cleaning all... 🧹"
 	@echo "                                     "
 	@rm -rf $(NAME)
-	@echo "$(WHITE)    ✨ Cleaning - PHILOSOPHERS - complete! ✨"
+	@echo "$(WHITE)   ✨ Cleaning - PHILOSOPHERS - complete! ✨"
 	@echo "                                     "
 
 val: $(NAME)
