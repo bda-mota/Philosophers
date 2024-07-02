@@ -6,11 +6,11 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:05:14 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/02 14:38:42 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:26:08 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "philo.h"
 
 bool	is_digit(char c)
 {
@@ -28,6 +28,12 @@ char	*print_error(const char *error)
 	return (NULL);
 }
 
+int	print_error_number(const char *error)
+{
+	printf("Error: %s\n", error);
+	return (EXIT_FAILURE);
+}
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
@@ -39,3 +45,4 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
+

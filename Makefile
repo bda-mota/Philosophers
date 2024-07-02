@@ -8,7 +8,7 @@ SRC_PATH 	:= sources
 OBJ_PATH	:= objects
 
 # SOURCES
-CFILES		:= main.c utils.c parsing.c
+CFILES		:= main.c utils.c parsing.c init.c
 
 #PATH_FILES
 SRCS		:= $(addprefix $(SRC_PATH)/, $(CFILES))
