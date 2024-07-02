@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:49 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/02 17:26:27 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:41:00 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+void	*dinner(void)
+{
+	printf("thread created\n");
+}
 	// printf("number_of_philosphers: %d\n", table.number_of_philosphers);
 	// printf("time_to_die: %d\n", table.time_to_die);
 	// printf("time_to_eat: %d\n", table.time_to_eat);

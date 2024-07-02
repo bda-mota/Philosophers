@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:43 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/02 17:24:35 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:47:41 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 
 enum e_mode
 {
-	INIT,
 	CREATE,
+	JOIN,
+	DETACH,
+	INIT,
 	DESTROY,
 	LOCK,
 	UNLOCK
@@ -38,11 +40,12 @@ typedef struct s_philo
 {
 	int			id;
 	long		meals;
-	int			full;
-	int			last_meal_time;
+	bool		full;
+	long		last_meal_time;
 	pthread_t	thread_id;
 	t_fork		*left_fork;
 	t_fork		*right_fork;
+	t_table		*table; //para conseguir acessar os dados de table
 }t_philo;
 
 typedef struct s_table
@@ -57,6 +60,13 @@ typedef struct s_table
 	t_fork	*forks;
 	t_philo	*philos;
 }t_table;
+
+/* INIT */
+int			set_the_dining_table(t_table *table);
+void		give_birth_to_philos(t_table *table);
+void		handle_mutexes(pthread_mutex_t mutex, int mode);
+void		handle_threads(pthread_t thread, int mode);
+void		*dinner(void);
 
 /* UTILS */
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
