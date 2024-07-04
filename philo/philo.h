@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:43 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/02 20:47:41 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:39:49 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 
+/* ENUMS */
 enum e_mode
 {
 	CREATE,
@@ -27,6 +28,17 @@ enum e_mode
 	DESTROY,
 	LOCK,
 	UNLOCK
+};
+
+enum e_error
+{
+	EINVAL,
+	EBUSY,
+	EPERM,
+	ENOMEM,
+	EDEADLK,
+	ESRCH,
+	EAGAIN
 };
 
 /* STRUCTS */
@@ -43,30 +55,37 @@ typedef struct s_philo
 	bool		full;
 	long		last_meal_time;
 	pthread_t	thread_id;
-	t_fork		*left_fork;
-	t_fork		*right_fork;
-	t_table		*table; //para conseguir acessar os dados de table
+	t_fork		*first_fork;
+	t_fork		*second_fork;
+	t_table		*table;
 }t_philo;
 
 typedef struct s_table
 {
-	long	number_of_philos;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	long	number_of_meals;
-	long	start;
-	bool	ended;
-	t_fork	*forks;
-	t_philo	*philos;
+	long			number_of_philos;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	long			number_of_meals;
+	long			start;
+	bool			ended;
+	bool			all_born;
+	t_fork			*forks;
+	t_philo			*philos;
+	pthread_mutex_t	table_mutex;
 }t_table;
 
 /* INIT */
 int			set_the_dining_table(t_table *table);
 void		give_birth_to_philos(t_table *table);
-void		handle_mutexes(pthread_mutex_t mutex, int mode);
-void		handle_threads(pthread_t thread, int mode);
 void		*dinner(void);
+
+/* MUTEXES AND THREADS */
+void		handle_mutexes(pthread_mutex_t mutex_id, int mode);
+void		handle_mutexes_erros(int mode);
+void		handle_threads(pthread_t thread_id, int mode);
+void		handle_threads_erros(int mode);
+
 
 /* UTILS */
 int			ft_strncmp(const char *s1, const char *s2, size_t n);

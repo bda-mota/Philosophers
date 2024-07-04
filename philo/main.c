@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:49 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/02 20:41:00 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:12:37 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int argc, char **argv)
 	{
 		if (!parsing_input(&table, argv))
 			return (EXIT_FAILURE);
+		set_the_dining_table(&table);
+		dinner_start(&table);
 	}
 	else
 		return (print_error_number("incorrect number of arguments"));
@@ -35,4 +37,3 @@ void	*dinner(void)
 	// printf("time_to_eat: %d\n", table.time_to_eat);
 	// printf("time_to_sleep: %d\n", table.time_to_sleep);
 	// printf("number_of_meals: %d\n", table.number_of_meals);
-
