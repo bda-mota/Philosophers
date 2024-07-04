@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:58:39 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/02 17:25:12 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:47:14 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,14 @@ long int	ft_atol(const char *nptr)
 		i++;
 	}
 	return (result);
+}
+
+bool	is_digit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+bool	is_space(char c)
+{
+	return ((c >= 9 && c <= 13) || c == 32);
 }

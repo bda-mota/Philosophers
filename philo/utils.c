@@ -6,21 +6,11 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:05:14 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/03 11:09:44 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:45:37 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-bool	is_digit(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-bool	is_space(char c)
-{
-	return ((c >= 9 && c <= 13) || c == 32);
-}
 
 char	*print_error(const char *error)
 {
@@ -44,4 +34,21 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while (i < (n - 1) && s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+int	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
+		usleep(500);
+	return (0);
+}
+
+void	print_message(const char *message, t_philo *philos)
+{
+	pthread_mutex_lock(philos->write_lock);
+	printf("%ld %d %s\n", get_current_time(), philos->id, message);
+	pthread_mutex_unlock(philos->write_lock);
 }

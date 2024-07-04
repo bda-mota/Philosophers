@@ -7,7 +7,7 @@ CC			:= gcc
 OBJ_PATH	:= objects
 
 # SOURCES
-CFILES		:= main.c utils.c parsing.c init.c
+CFILES		:= main.c init.c parsing.c utils.c mutexes.c threads.c routine.c
 
 #PATH_FILES
 OBJS		:= $(addprefix $(OBJ_PATH)/, $(CFILES:%.c=%.o))
@@ -64,7 +64,7 @@ fclean: clean
 	@echo "                                     "
 
 val: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all -q ./$(NAME)
+	valgrind --tool=helgrind --leak-check=full --show-leak-kinds=all -q ./$(NAME)
 
 clear:
 	clear
