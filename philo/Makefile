@@ -7,7 +7,7 @@ CC			:= gcc
 OBJ_PATH	:= objects
 
 # SOURCES
-CFILES		:= main.c init.c parsing.c utils.c mutexes.c threads.c routine.c
+CFILES		:= main.c init.c parsing.c utils.c mutexes.c threads.c routine.c monitor.c
 
 #PATH_FILES
 OBJS		:= $(addprefix $(OBJ_PATH)/, $(CFILES:%.c=%.o))

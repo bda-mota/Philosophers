@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:49 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/04 11:24:55 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:54:51 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,18 @@ int	main(int argc, char **argv)
 	{
 		if (!parsing_input(&table, argv))
 			return (EXIT_FAILURE);
-		set_the_dining_table(&table, &forks);
-		create_philos(&philos, &table, forks);
-		create_threads(&philos, &table);
-		//dinner_start(&table);
+		philos = malloc(sizeof(t_philo) * table.number_of_philos);
+		if (!philos)
+			return (print_error_number("malloc failed"));
+		forks = malloc(sizeof(pthread_mutex_t) * table.number_of_philos);
+			if (!forks)
+				return (print_error_number("malloc failed"));
+		get_forks(forks);
+		set_the_dining_table(&table, forks);
+		create_philos(philos, &table, forks);
+		create_threads(philos, &table);
 	}
 	else
 		return (print_error_number("incorrect number of arguments"));
 	return (0);
 }
-	// printf("number_of_philosphers: %d\n", table.number_of_philosphers);
-	// printf("time_to_die: %d\n", table.time_to_die);
-	// printf("time_to_eat: %d\n", table.time_to_eat);
-	// printf("time_to_sleep: %d\n", table.time_to_sleep);
-	// printf("number_of_meals: %d\n", table.number_of_meals);

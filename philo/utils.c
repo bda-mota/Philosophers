@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:05:14 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/04 13:45:37 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:49:48 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ int	print_error_number(const char *error)
 {
 	printf("Error: %s\n", error);
 	return (EXIT_FAILURE);
+}
+
+void	print_message(const char *message, t_philo *philos, int id)
+{
+	size_t	time;
+
+	pthread_mutex_lock(philos->write_lock);
+	time = get_current_time() - philos->start_at;
+	if (!dead(philos))
+		printf("%ld %d %s\n", time, id, message);
+	pthread_mutex_unlock(philos->write_lock);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -44,11 +55,4 @@ int	ft_usleep(size_t milliseconds)
 	while ((get_current_time() - start) < milliseconds)
 		usleep(500);
 	return (0);
-}
-
-void	print_message(const char *message, t_philo *philos)
-{
-	pthread_mutex_lock(philos->write_lock);
-	printf("%ld %d %s\n", get_current_time(), philos->id, message);
-	pthread_mutex_unlock(philos->write_lock);
 }

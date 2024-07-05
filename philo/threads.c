@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:24:32 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/04 12:49:49 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:52:24 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,12 @@ int	dinners_end(t_philo *philos, t_table *table, const char *error)
 	pthread_mutex_t	*forks;
 
 	i = 0;
-	*forks = get_forks(NULL);
+	forks = get_forks(NULL);
 	while (i < table->number_of_philos)
 	{
 		pthread_mutex_destroy(&forks[i]);
 		i++;
 	}
-	//free(forks);
 	pthread_mutex_destroy(&table->write_lock);
 	pthread_mutex_destroy(&table->meal_lock);
 	pthread_mutex_destroy(&table->dead_lock);

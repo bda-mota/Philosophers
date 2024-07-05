@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:42:03 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/04 11:44:03 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:38:04 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_the_dining_table(t_table *table, pthread_mutex_t *forks)
 	handle_mutexes(table->write_lock, INIT);
 	handle_mutexes(table->meal_lock, INIT);
 	handle_mutexes(table->dead_lock, INIT);
-	init_forks(&forks, table->number_of_philos);
+	init_forks(forks, table->number_of_philos);
 }
 
 void	init_forks(pthread_mutex_t *forks, int number_of_philos)
@@ -29,10 +29,6 @@ void	init_forks(pthread_mutex_t *forks, int number_of_philos)
 	int	i;
 
 	i = 0;
-	forks = malloc(sizeof(pthread_mutex_t) * number_of_philos);
-	if (!forks)
-		return (print_error("malloc failed"));
-	get_forks(forks);
 	while (i < number_of_philos)
 	{
 		handle_mutexes(forks[i], INIT);
@@ -45,15 +41,13 @@ void	create_philos(t_philo *philos, t_table *table, pthread_mutex_t *forks)
 	int	i;
 
 	i = 0;
-	philos = malloc(sizeof(t_philo) * table->number_of_philos);
-	if (!philos)
-		return (print_error("malloc failed"));
 	while (i < table->number_of_philos)
 	{
 		philos[i].id = i + 1;
 		philos[i].dead = 0;
 		philos[i].full = false;
 		philos[i].meals_eaten = 0;
+		philos[i].start_at = get_current_time();
 		philos[i].last_meal_time = get_current_time();
 		philos[i].write_lock = &table->write_lock;
 		philos[i].meal_lock = &table->meal_lock;
