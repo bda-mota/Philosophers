@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:24:32 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 14:03:01 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:57:13 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	dinners_end(t_philo *philos, t_table *table, const char *error)
 	pthread_mutex_destroy(&table->meal_lock);
 	pthread_mutex_destroy(&table->dead_lock);
 	free(philos);
-	print_error_number(error);
+	if (error)
+		print_error_number(error);
 	return (EXIT_FAILURE);
 }

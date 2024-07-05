@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:52:18 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 13:42:30 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:57:44 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	dead(t_philo *philo)
 void	philo_eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right_fork);
-	print_message("has taken a fork \n", philo, philo->id);
+	print_message("has taken a fork", philo, philo->id);
 	if (philo->table->number_of_philos == 1)
 	{
 		ft_usleep(philo->table->time_to_die);
