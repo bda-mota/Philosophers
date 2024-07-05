@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:49 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 12:54:51 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:20:30 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int	main(int argc, char **argv)
 			if (!forks)
 				return (print_error_number("malloc failed"));
 		get_forks(forks);
-		set_the_dining_table(&table, forks);
+		set_the_dining_table(&table, philos, forks);
 		create_philos(philos, &table, forks);
 		create_threads(philos, &table);
+		dinners_end(philos, &table, NULL);
 	}
 	else
 		return (print_error_number("incorrect number of arguments"));

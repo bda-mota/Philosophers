@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:43 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 12:50:51 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:13:09 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ typedef struct s_table
 	size_t			time_to_sleep;
 	size_t			start_time;
 	int				number_of_meals;
-	bool			ended;
-	bool			all_born;
 	t_philo			*philos;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
@@ -71,7 +69,8 @@ typedef struct s_table
 }	t_table;
 
 /* INIT */
-void			set_the_dining_table(t_table *table, pthread_mutex_t *forks);
+void			set_the_dining_table(t_table *table, t_philo *philos,
+					pthread_mutex_t *forks);
 void			init_forks(pthread_mutex_t *forks, int number_of_philos);
 void			create_philos(t_philo *philos, t_table *table,
 					pthread_mutex_t *forks);
@@ -92,7 +91,7 @@ int				ft_usleep(size_t milliseconds);
 /* PARSING */
 int				parsing_input(t_table *table, char **argv);
 const char		*check_input(const char *str);
-long int		ft_atol(const char *nptr);
+int				ft_atol(const char *nptr);
 bool			is_digit(char c);
 bool			is_space(char c);
 

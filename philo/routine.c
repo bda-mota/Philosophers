@@ -6,23 +6,11 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:52:18 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 12:53:02 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:42:30 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	dead(t_philo *philo)
-{
-	pthread_mutex_lock(philo->dead_lock);
-	if (*philo->dead == 1)
-	{
-		pthread_mutex_unlock(philo->dead_lock);
-		return (1);
-	}
-	pthread_mutex_unlock(philo->dead_lock);
-	return (0);
-}
 
 void	*routine(void *ptr)
 {
@@ -38,6 +26,18 @@ void	*routine(void *ptr)
 		philo_think(philo);
 	}
 	return (NULL);
+}
+
+int	dead(t_philo *philo)
+{
+	pthread_mutex_lock(philo->dead_lock);
+	if (*philo->dead == 1)
+	{
+		pthread_mutex_unlock(philo->dead_lock);
+		return (1);
+	}
+	pthread_mutex_unlock(philo->dead_lock);
+	return (0);
 }
 
 void	philo_eat(t_philo *philo)
@@ -62,8 +62,6 @@ void	philo_eat(t_philo *philo)
 	philo->eating = 0;
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
-	if (philo->meals_eaten == philo->table->number_of_meals)
-		philo->full = true;
 }
 
 void	philo_sleep(t_philo *philo)

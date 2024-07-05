@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:24:32 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 12:52:24 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:03:01 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@ void	create_threads(t_philo *philos, t_table *table)
 {
 	pthread_t	waiter;
 	int			i;
+	int			j;
 
 	i = 0;
-	if (pthread_create(&waiter, NULL, (void *)monitor, (void *)table) != 0)
+	j = 0;
+	if (pthread_create(&waiter, NULL, &monitor, table->philos) != 0)
 		dinners_end(philos, table, "pthread_create failed");
 	while (i < table->number_of_philos)
 	{
-		if (pthread_create(&philos[i].thread_id, NULL, (void *)routine,
-				(void *)&philos[i]) != 0)
+		if (pthread_create(&philos[i].thread_id, NULL, &routine,
+				&philos[i]) != 0)
 			dinners_end(philos, table, "pthread_create failed");
 		i++;
 	}
 	if (pthread_join(waiter, NULL) != 0)
 		dinners_end(philos, table, "pthread_join failed");
-	i = 0;
-	while (i < table->number_of_philos)
+	while (j < table->number_of_philos)
 	{
-		if (pthread_join(philos[i].thread_id, NULL) != 0)
+		if (pthread_join(philos[j].thread_id, NULL) != 0)
 			dinners_end(philos, table, "pthread_join failed");
-		i++;
+		j++;
 	}
 }
 

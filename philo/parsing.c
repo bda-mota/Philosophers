@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:58:39 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 12:55:40 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:12:53 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int	parsing_input(t_table *table, char **argv)
 		table->number_of_meals = ft_atol(argv[5]);
 	else
 		table->number_of_meals = -1;
+	if (table->number_of_philos == 0 || table->time_to_die == 0
+		|| table->time_to_eat == 0 || table->time_to_sleep == 0)
+		return (0);
 	return (1);
 }
 
@@ -39,7 +42,7 @@ const char	*check_input(const char *str)
 		i++;
 	else if (str[i] == '-')
 		return (print_error("only positive numbers allowed"));
-	if (!is_digit(str[i]))
+	if (!is_digit(str[i]) || str[i] == '0')
 		return (print_error("incorrect input"));
 	nbr = &str[i];
 	while (is_digit(str[i]))
@@ -54,16 +57,16 @@ const char	*check_input(const char *str)
 	return (nbr);
 }
 
-long int	ft_atol(const char *nptr)
+int	ft_atol(const char *nptr)
 {
-	int		i;
-	long	result;
+	int					i;
+	unsigned long long	result;
 
 	i = 0;
 	result = 0;
 	nptr = check_input(nptr);
 	if (!nptr)
-		return (-1);
+		return (0);
 	while (is_digit(nptr[i]))
 	{
 		result = (result * 10) + (nptr[i] - '0');
