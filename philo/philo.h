@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:43 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 16:54:12 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:06:27 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,17 @@ void			set_the_dining_table(t_table *table, t_philo *philos,
 void			init_forks(pthread_mutex_t *forks, int number_of_philos);
 void			create_philos(t_philo *philos, t_table *table,
 					pthread_mutex_t *forks);
-size_t			get_current_time(void);
-pthread_mutex_t	*get_forks(pthread_mutex_t *forks);
 
 /* UTILS */
+size_t			get_current_time(void);
+pthread_mutex_t	*get_forks(pthread_mutex_t *forks);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_usleep(size_t milliseconds);
+
+/* PRINT */
 void			print_message(const char *message, t_philo *philos, int id);
 char			*print_error(const char *error);
 int				print_error_number(const char *error);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
-int				ft_usleep(size_t milliseconds);
 
 /* PARSING */
 int				parsing_input(t_table *table, char **argv);

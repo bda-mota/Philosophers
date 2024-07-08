@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:42:03 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 15:49:25 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:06:09 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,4 @@ void	create_philos(t_philo *philos, t_table *table, pthread_mutex_t *forks)
 			philos[i].right_fork = &forks[i - 1];
 		i++;
 	}
-}
-
-size_t	get_current_time(void)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
-
-pthread_mutex_t	*get_forks(pthread_mutex_t *forks)
-{
-	static pthread_mutex_t	*new_forks;
-
-	if (forks)
-		new_forks = forks;
-	return (new_forks);
 }

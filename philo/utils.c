@@ -6,33 +6,28 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:05:14 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 16:54:56 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:06:18 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-char	*print_error(const char *error)
+size_t	get_current_time(void)
 {
-	printf("Error: %s\n", error);
-	return (NULL);
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		write(2, "gettimeofday() error\n", 22);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-int	print_error_number(const char *error)
+pthread_mutex_t	*get_forks(pthread_mutex_t *forks)
 {
-	printf("Error: %s\n", error);
-	return (EXIT_FAILURE);
-}
+	static pthread_mutex_t	*new_forks;
 
-void	print_message(const char *message, t_philo *philos, int id)
-{
-	size_t	time;
-
-	pthread_mutex_lock(philos->write_lock);
-	time = get_current_time() - philos->start_at;
-	if (!death(philos))
-		printf("%ld %d %s\n", time, id, message);
-	pthread_mutex_unlock(philos->write_lock);
+	if (forks)
+		new_forks = forks;
+	return (new_forks);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
