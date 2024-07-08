@@ -6,13 +6,14 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:42:03 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 12:22:57 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:49:25 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	set_the_dining_table(t_table *table, t_philo *philos, pthread_mutex_t *forks)
+void	set_the_dining_table(t_table *table, t_philo *philos,
+		pthread_mutex_t *forks)
 {
 	table->dead_flag = 0;
 	table->philos = philos;
