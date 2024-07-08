@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:42:03 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 13:59:12 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:22:57 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	set_the_dining_table(t_table *table, t_philo *philos, pthread_mutex_t *fork
 {
 	table->dead_flag = 0;
 	table->philos = philos;
-	philos->table = table;
 	pthread_mutex_init(&table->write_lock, NULL);
 	pthread_mutex_init(&table->meal_lock, NULL);
 	pthread_mutex_init(&table->dead_lock, NULL);
@@ -51,7 +50,8 @@ void	create_philos(t_philo *philos, t_table *table, pthread_mutex_t *forks)
 		philos[i].write_lock = &table->write_lock;
 		philos[i].meal_lock = &table->meal_lock;
 		philos[i].dead_lock = &table->dead_lock;
-		philos[i].left_fork = &forks[i];
+		philos[i].table = table;
+		philos[i].own_fork = &forks[i];
 		if (i == 0)
 			philos[i].right_fork = &forks[table->number_of_philos - 1];
 		else
@@ -67,4 +67,13 @@ size_t	get_current_time(void)
 	if (gettimeofday(&time, NULL) == -1)
 		write(2, "gettimeofday() error\n", 22);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+pthread_mutex_t	*get_forks(pthread_mutex_t *forks)
+{
+	static pthread_mutex_t	*new_forks;
+
+	if (forks)
+		new_forks = forks;
+	return (new_forks);
 }

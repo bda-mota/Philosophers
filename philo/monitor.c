@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:33:14 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 14:03:43 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:44:25 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	cardiac_monitor(t_philo *philos)
 	{
 		if (cardiac_monitor_aux(&philos[i]))
 		{
-			print_message("died", &philos[i], philos[i].id);
-			pthread_mutex_lock(philos[i].dead_lock);
+			print_message(RED "💀 died 💀" RESET, &philos[i], philos[i].id);
+			pthread_mutex_lock(philos[0].dead_lock);
 			*philos->dead = 1;
-			pthread_mutex_unlock(philos[i].dead_lock);
+			pthread_mutex_unlock(philos[0].dead_lock);
 			return (1);
 		}
 		i++;
@@ -78,7 +78,7 @@ int	waiter_check(t_philo *philos)
 		pthread_mutex_unlock(philos[i].meal_lock);
 		i++;
 	}
-	if (satisfied == philos->table->number_of_meals)
+	if (satisfied == philos->table->number_of_philos)
 	{
 		pthread_mutex_lock(philos[0].dead_lock);
 		*philos->dead = 1;

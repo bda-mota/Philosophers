@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:52:18 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 14:57:44 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:23:10 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ int	dead(t_philo *philo)
 void	philo_eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right_fork);
-	print_message("has taken a fork", philo, philo->id);
+	print_message("has taken a fork 🍴", philo, philo->id);
 	if (philo->table->number_of_philos == 1)
 	{
 		ft_usleep(philo->table->time_to_die);
 		pthread_mutex_unlock(philo->right_fork);
 		return ;
 	}
-	pthread_mutex_lock(philo->left_fork);
-	print_message("has taken a fork", philo, philo->id);
+	pthread_mutex_lock(philo->own_fork);
+	print_message("has taken a fork 🍴", philo, philo->id);
 	philo->eating = 1;
-	print_message("is eating", philo, philo->id);
+	print_message(ORANGE"is eating 🍝"RESET, philo, philo->id);
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_meal_time = get_current_time();
 	philo->meals_eaten++;
@@ -61,16 +61,16 @@ void	philo_eat(t_philo *philo)
 	ft_usleep(philo->table->time_to_eat);
 	philo->eating = 0;
 	pthread_mutex_unlock(philo->right_fork);
-	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_unlock(philo->own_fork);
 }
 
 void	philo_sleep(t_philo *philo)
 {
-	print_message("is sleeping", philo, philo->id);
+	print_message(CYAN"is sleeping 💤"RESET, philo, philo->id);
 	ft_usleep(philo->table->time_to_sleep);
 }
 
 void	philo_think(t_philo *philo)
 {
-	print_message("is thinking", philo, philo->id);
+	print_message(GREEN"is thinking 💭"RESET, philo, philo->id);
 }

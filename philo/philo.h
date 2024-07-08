@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:43 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 14:56:51 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:22:49 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 # include <stdbool.h>
 # include <pthread.h>
 # include <stdlib.h>
+
+/* COLORS */
+# define ORANGE  "\033[38;2;255;165;0m"
+# define RED     "\033[1;31m"
+# define GREEN   "\033[1;32m"
+# define BLUE    "\033[1;34m"
+# define MAGENTA "\033[1;35m"
+# define CYAN    "\033[1;36m"
+# define RESET   "\033[0m"
 
 /* ENUMS */
 typedef enum e_mode
@@ -46,7 +55,7 @@ typedef struct s_philo
 	size_t			last_meal_time;
 	t_table			*table;
 	pthread_t		thread_id;
-	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*own_fork;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*meal_lock;
@@ -75,10 +84,6 @@ void			init_forks(pthread_mutex_t *forks, int number_of_philos);
 void			create_philos(t_philo *philos, t_table *table,
 					pthread_mutex_t *forks);
 size_t			get_current_time(void);
-
-/* MUTEXES */
-void			handle_mutexes(pthread_mutex_t mutex, t_mode mode);
-void			handle_mutexes_error(int status, t_mode mode);
 pthread_mutex_t	*get_forks(pthread_mutex_t *forks);
 
 /* UTILS */
