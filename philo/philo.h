@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:43 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 15:50:54 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:54:12 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_philo
 	int				id;
 	int				*dead;
 	int				eating;
-	bool			full;
 	int				meals_eaten;
 	size_t			start_at;
 	size_t			last_meal_time;
@@ -66,11 +65,11 @@ typedef struct s_table
 {
 	int				dead_flag;
 	int				number_of_philos;
+	int				number_of_meals;
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			start_time;
-	int				number_of_meals;
 	t_philo			*philos;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
@@ -88,9 +87,9 @@ pthread_mutex_t	*get_forks(pthread_mutex_t *forks);
 
 /* UTILS */
 void			print_message(const char *message, t_philo *philos, int id);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*print_error(const char *error);
 int				print_error_number(const char *error);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_usleep(size_t milliseconds);
 
 /* PARSING */
@@ -112,7 +111,7 @@ int				waiter_check(t_philo *philos);
 
 /* ROUTINE */
 void			*routine(void *ptr);
-int				dead(t_philo *philo);
+int				death(t_philo *philo);
 void			philo_eat(t_philo *philo);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);

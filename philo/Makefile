@@ -29,7 +29,7 @@ COMPILED_CFILES := 0
 define progress_bar
 	@tput cuu1
 	@tput el
-	@echo "$(GREEN)[========================================>] $(WHITE)($1/$(TOTAL_FILES))"
+	@echo "$(GREEN)[================================>] $(WHITE)($1/$(TOTAL_FILES))"
 endef
 
 all: $(OBJ_PATH) $(NAME)
@@ -46,9 +46,9 @@ $(OBJ_PATH)/%.o: %.c philo.h | $(OBJ_PATH)
 
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-	@echo "$(GREEN)-------------------------------------------"
-	@echo "$(WHITE) ✅ The [$(GREEN)PHILOSOPHERS$(WHITE)] has been compiled! ✅ "
-	@echo "$(GREEN)-------------------------------------------"
+	@echo "$(GREEN)-----------------------------------"
+	@echo "$(WHITE)   🍝 The [$(GREEN)DINNER$(WHITE)] is served! 🍝 "
+	@echo "$(GREEN)-----------------------------------"
 
 clean:
 	@rm -rf $(OBJ_PATH)

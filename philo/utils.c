@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:05:14 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/05 14:55:17 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:54:56 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_message(const char *message, t_philo *philos, int id)
 
 	pthread_mutex_lock(philos->write_lock);
 	time = get_current_time() - philos->start_at;
-	if (!dead(philos))
+	if (!death(philos))
 		printf("%ld %d %s\n", time, id, message);
 	pthread_mutex_unlock(philos->write_lock);
 }
