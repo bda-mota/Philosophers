@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:52:18 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 16:54:20 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:37:13 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	death(t_philo *philo)
 	{
 		pthread_mutex_unlock(philo->dead_lock);
 		return (1);
-	}
+	}  
 	pthread_mutex_unlock(philo->dead_lock);
 	return (0);
 }
@@ -53,8 +53,8 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(philo->own_fork);
 	print_message("has taken a fork 🍴", philo, philo->id);
 	philo->eating = 1;
-	print_message(ORANGE"is eating 🍝"RESET, philo, philo->id);
 	pthread_mutex_lock(philo->meal_lock);
+	print_message(ORANGE"is eating 🍝"RESET, philo, philo->id);
 	philo->last_meal_time = get_current_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
