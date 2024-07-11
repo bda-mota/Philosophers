@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:33:14 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/10 10:34:24 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:20:58 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	cardiac_monitor(t_philo *philos)
 	{
 		if (cardiac_monitor_aux(&philos[i]))
 		{
-			print_message(RED "💀 died 💀" RESET, &philos[i], philos[i].id);
 			pthread_mutex_lock(philos[0].dead_lock);
 			*philos->dead = 1;
 			pthread_mutex_unlock(philos[0].dead_lock);
+			print_message(RED "💀 died 💀" RESET, &philos[i], philos[i].id);
 			return (1);
 		}
 		i++;

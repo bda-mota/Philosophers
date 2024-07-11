@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:52:18 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/10 10:37:13 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:16:07 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	*routine(void *ptr)
 	philo = (t_philo *)ptr;
 	if (philo->id % 2 == 0)
 		ft_usleep(1);
+	while (1)
+	{
+		if (philo->table->all_read == 1)
+			break ;
+	}
 	while (!death(philo))
 	{
 		philo_eat(philo);
@@ -35,7 +40,7 @@ int	death(t_philo *philo)
 	{
 		pthread_mutex_unlock(philo->dead_lock);
 		return (1);
-	}  
+	}
 	pthread_mutex_unlock(philo->dead_lock);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:42:03 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 17:06:09 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:09:19 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	set_the_dining_table(t_table *table, t_philo *philos,
 {
 	table->dead_flag = 0;
 	table->philos = philos;
+	table->all_read = 0;
 	pthread_mutex_init(&table->write_lock, NULL);
 	pthread_mutex_init(&table->meal_lock, NULL);
 	pthread_mutex_init(&table->dead_lock, NULL);

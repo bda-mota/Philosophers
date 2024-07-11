@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:43 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 17:06:27 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:07:50 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_table
 	int				dead_flag;
 	int				number_of_philos;
 	int				number_of_meals;
+	int				all_read;
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;

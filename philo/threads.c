@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:24:32 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 11:33:49 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:13:10 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	create_threads(t_philo *philos, t_table *table)
 				&philos[i]) != 0)
 			dinners_end(philos, table, "pthread_create failed");
 		i++;
+		if (i == table->number_of_philos)
+			table->all_read = 1;
 	}
 	if (pthread_join(waiter, NULL) != 0)
 		dinners_end(philos, table, "pthread_join failed");
