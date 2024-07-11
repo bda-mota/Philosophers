@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:58:39 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 16:05:42 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:07:20 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ const char	*check_input(const char *str)
 		i++;
 	else if (str[i] == '-')
 		return (print_error("only positive numbers allowed"));
-	if (!is_digit(str[i]) || str[i] == '0')
+	if (!is_digit(str[i]))
 		return (print_error("incorrect input"));
 	nbr = &str[i];
 	while (is_digit(str[i]))

@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:49 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/08 15:49:48 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:09:45 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	main(int argc, char **argv)
 	{
 		if (!parsing_input(&table, argv))
 			return (EXIT_FAILURE);
+		if (table.number_of_meals == 0)
+			return (EXIT_SUCCESS);
 		philos = malloc(sizeof(t_philo) * table.number_of_philos);
 		if (!philos)
 			return (print_error_number("malloc failed"));

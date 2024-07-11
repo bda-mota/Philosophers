@@ -1,13 +1,13 @@
 NAME		:= philo
-CFLAGS		:= -Wextra -Wall -Werror -pthread -g3
+CFLAGS		:= -Wextra -Wall -Werror -pthread -O3
 MAKEFLAGS += --silent
-
+# -fsanitize=thread
 # PATHS
 CC			:= gcc
 OBJ_PATH	:= objects
 
 # SOURCES
-CFILES		:= main.c init.c parsing.c utils.c threads.c routine.c monitor.c print.c
+CFILES		:= main.c init.c parsing.c utils.c threads.c routine.c routine_utils.c monitor.c print.c
 
 #PATH_FILES
 OBJS		:= $(addprefix $(OBJ_PATH)/, $(CFILES:%.c=%.o))
