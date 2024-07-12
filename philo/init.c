@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:42:03 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/11 19:03:33 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:55:25 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	create_philos(t_philo *philos, t_table *table, pthread_mutex_t *forks)
 		philos[i].meal_lock = &table->meal_lock;
 		philos[i].dead_lock = &table->dead_lock;
 		philos[i].table = table;
-		philos[i].right_fork = &forks[i];
+		philos[i].own_fork = &forks[i];
 		if (table->number_of_philos == 1)
-			philos[i].left_fork = NULL;
+			philos[i].right_fork = NULL;
 		else
-			philos[i].left_fork = &forks[(i + 1) % table->number_of_philos];
+			philos[i].right_fork = &forks[(i + 1) % table->number_of_philos];
 		i++;
 	}
 	table->start_time = get_current_time();

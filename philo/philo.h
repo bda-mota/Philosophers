@@ -6,7 +6,7 @@
 /*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:42:43 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/07/11 19:20:47 by bda-mota         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:53:48 by bda-mota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # define FORK "has taken a fork 🍴"
 # define SLEEP CYAN"is sleeping 💤"
 
-
 /* ENUMS */
 typedef enum e_mode
 {
@@ -59,8 +58,8 @@ typedef struct s_philo
 	size_t			last_meal_time;
 	t_table			*table;
 	pthread_t		thread_id;
+	pthread_mutex_t	*own_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*start;
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*meal_lock;
@@ -122,8 +121,7 @@ int				waiter_check(t_philo *philos);
 /* ROUTINE */
 void			*routine(void *ptr);
 void			philo_eat(t_philo *philo);
-void			philo_sleep(t_philo *philo);
-void			philo_think(t_philo *philo);
+void			philo_sleep_n_think(t_philo *philo);
 
 /* ROUTINE UTILS */
 int				death(t_philo *philo);
