@@ -6,8 +6,6 @@ Este projeto recria o clássico "Problema dos Filósofos Comilões" utilizando t
 
 Vale ressaltar que o tempo para morrer (se não comer) deve ser maior do que o tempo para comer e dormir. Caso contrário, um filósofo morrerá(ex: 4 380 200 200 2). Se todas as condições forem atendidas(ex: 4 410 200 200) e não se tenha atribuído a quantidade de refeições, para finalizar o programa a execução deverá ser interrompida, pois nenhum filósofo morrerá.
 
-![Gif1](philo_new.mp4)
-
 ## Como Clonar o Repositório
 
 Para clonar este repositório, utilize o seguinte comando:
