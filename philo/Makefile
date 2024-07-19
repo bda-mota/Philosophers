@@ -1,5 +1,5 @@
 NAME		:= philo
-CFLAGS		:= -Wextra -Wall -pthread
+CFLAGS		:= -Wextra -Wall -Werror -pthread
 MAKEFLAGS += --silent
 # -fsanitize=thread
 # PATHS
