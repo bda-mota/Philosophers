@@ -33,7 +33,11 @@ Após a compilação, você pode executar o programa com os seguintes argumentos
 ### Argumentos
 
 nbr_philo: Número de filósofos.
+
 time_to_die: Tempo em milissegundos que um filósofo pode sobreviver sem comer antes de morrer.
+
 time_to_eat: Tempo em milissegundos que um filósofo leva para comer.
+
 time_to_sleep: Tempo em milissegundos que um filósofo leva para dormir.
+
 nbr_of_meals (opcional): Número de refeições que cada filósofo deve fazer. Se não for fornecido, o programa continuará até que todos os filósofos morram ou o tempo de execução termine.
